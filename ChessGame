@@ -1,0 +1,57 @@
+#include<iostream>
+
+#include<graphics.h>    //图形库（easyx）头文件
+#include<mmsystem.h>    //播放背景音乐所需的头文件
+#include<Windows.h>
+#include<math.h>
+
+#pragma comment (lib,"winmm.lib")   //*链接*该库文件以提示编译器通过加载该库文件实现音乐播放
+
+void InitGame();
+void DrawTheBoard();
+void PlayChess();
+
+
+int main()
+{
+    InitGame();
+    return 0;
+}
+
+void InitGame() {
+    initgraph(600, 500, EX_DBLCLKS);    //创建窗口
+    loadimage(NULL, _T("C:\\Users\\21306\\Desktop\\bg.jpg"));   //将图片加载至窗口
+
+    mciSendString("play C:\\Users\\21306\\Desktop\\skyCity.mp3", 0, 0, 0);  //播放背景音乐
+    //mciSendString("open C:\\Users\\21306\\Desktop\\a.mp3 alias song", NULL, 0, NULL);
+    //mciSendString("play song repeat", NULL, 0, NULL);
+    
+    //画出棋盘
+    DrawTheBoard();
+    //打印玩家信息
+    outtextxy(503, 50, "玩家一：白棋");
+    outtextxy(503, 150, "玩家二：黑棋");
+}
+
+void DrawTheBoard() {
+    setlinecolor(BLACK);
+    //画横线
+    for (int i = 0;i <= 500;i += 25) {
+        line(0, i, 500, i);
+    }
+    //画竖线
+    for (int j = 0;j <= 500;j += 25) {
+        line(j, 0, j, 500);
+    }
+}
+
+void PlayChess() {
+    MOUSEMSG m; //保存鼠标信息
+    int x = 0, y = 0;   //坐标
+    int a = 0, b = 0;   //行列
+
+    while (1) {
+        m = GetMouseMsg();
+
+    }
+}
